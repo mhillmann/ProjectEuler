@@ -1,0 +1,71 @@
+public class Main {
+	
+	public static void main(String[] args) {
+		int dimension = 1001;
+		
+		int[][] spiral = new int[dimension][dimension];
+		
+		int row = dimension / 2;
+		int col = dimension / 2;
+		int sum = 0;
+		boolean flip = false;
+		String next = "";
+		
+		for (int index = 1; index <= dimension * dimension; index++) {
+			
+			spiral[row][col] = index;
+			
+			if (row == col) {
+				sum += index;
+				if (flip) {
+					col--;
+					flip = false;
+					next = "col--";
+				}
+				else {
+					col++;
+					flip = true;
+					next = "col++";
+					if (index == 1)
+						next = "row++";
+				}
+			}
+			
+			
+			else if (row + col == dimension - 1) {
+				sum += index;
+				if (row > col) {
+					row--;
+					next = "row--";
+				}
+				else {
+					col++;
+					next = "row++";
+				}
+			}
+			
+			else {
+				if (next == "row++")
+					row++;
+				else if (next == "row--")
+					row--;
+				else if (next == "col++")
+					col++;
+				else if (next == "col--")
+					col--;
+			}
+			
+			
+		}
+		
+		for (int i = 0; i < dimension; i++) {
+			for (int j = 0; j < dimension; j++) {
+				System.out.print(spiral[i][j] + "\t");
+			}
+			System.out.println();
+		}
+		
+		
+		System.out.println("Sum of the diagonals is: " + sum);
+	}
+}
