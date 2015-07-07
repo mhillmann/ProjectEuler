@@ -1,0 +1,24 @@
+public class Main {
+
+	public static void main(String[] args) {
+		
+		boolean isFound = false;
+		int answer = 2520;
+		
+		while (!isFound) {
+			answer++;
+			for (int i = 1; i <= 20; i++) {
+				if (answer % i != 0) {
+					break;
+				}
+				else if(i == 20) {
+					isFound = true;
+				}
+			}
+		}
+		
+		System.out.println("Answer: " + answer);
+		
+	}
+	
+}
